@@ -76,12 +76,8 @@
 * 2025-7-16								远程停车
 * 2025-7-17								菜单
 
-
-**记得要改虚线向下的搜线**
-
 			
 */
-// *************************** 版本说明 ***************************
 
 uint8 data_buffer[32];
 uint8 data_len;
@@ -92,25 +88,6 @@ int main(void)
 
 	Init_main();
 	uint8 mt9v03x_image_double[MT9V03X_H][MT9V03X_W];
-	
-	while(true){
-		if(mt9v03x_finish_flag){
-			img_main((uint8 *)mt9v03x_image,(uint8 *)mt9v03x_image_double);
-			element_update(mt9v03x_image_double);
-			update_state();
-			Line_search_main(mt9v03x_image_double);
-
-			caculate_Middle_side();
-			speed_plan_update();
-			//Line_state();
-			//ips200_show_int(0,200,return_Middle(),3);
-			mt9v03x_finish_flag = 0;
-			break;
-		}
-	}
-	//start_brushless();
-	//start_runing();
-
     while(true)
     {
 		Key_update();
@@ -121,34 +98,15 @@ int main(void)
 		}else if(fabsf(get_pitch())>25){
 			all_stop();
 		}
-		
-		//if(start == 1){
-			if(mt9v03x_finish_flag)
-				{
-	
-				//timer_start(TC_TIME2_CH0);
-				img_main((uint8 *)mt9v03x_image,(uint8 *)mt9v03x_image_double);
-				element_update(mt9v03x_image_double);
-				update_state();
-				Line_search_main(mt9v03x_image_double);
-
-				caculate_Middle_side();
-				speed_plan_update();
-				//Navigation_show();
-				//show_angle();
-
-				//ips200_draw_line(141,0,141,120,RGB565_RED);	//画中线
-				//ips200_show_int(0,140,return_error(),3);							//返回转向角
-				//ips200_displayimage03x((uint8 *)mt9v03x_image_double,MT9V03X_W, MT9V03X_H);//显示图像
-				//ips200_show_float(0,120,imu660ra_gyro_z,3,3);
-				//ips200_show_gray_image(0, 188,(uint8 *)mt9v03x_image, MT9V03X_W, MT9V03X_H, MT9V03X_W,MT9V03X_H, 0); //显示原图
-				//show_error_line();
-				//timer_stop(TC_TIME2_CH0);                                                   // 停止定时器
-				//printf("Timer count is %d us.\r\n", timer_get(TC_TIME2_CH0));               // 获取定时器的值并输出
-				//timer_clear(TC_TIME2_CH0);                                                  // 计时值使用完毕后记得清除，避免导致下次计时不从0开始
-				mt9v03x_finish_flag = 0;
-				
-			}
+		if(mt9v03x_finish_flag){;
+			img_main((uint8 *)mt9v03x_image,(uint8 *)mt9v03x_image_double);
+			element_update(mt9v03x_image_double);
+			update_state();
+			Line_search_main(mt9v03x_image_double);
+			caculate_Middle_side();
+			mt9v03x_finish_flag = 0;
+			
+		}
 		//}
         // 此处编写需要循环执行的代码
     }
