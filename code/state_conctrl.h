@@ -23,8 +23,8 @@ typedef enum {
 	L_in,
 	R_run,
 	L_run,
-	L_circle_out,
-	R_circle_out,
+	L_out,
+	R_out,
 	circle_stop,
 }car_circle_state;
 

@@ -159,9 +159,9 @@ void caculate_Middle_side(){
 		error = R_result;
 	}else if(current_circle_state==L_run){
 		error = L_result;
-	}else if(current_circle_state==L_circle_out){
+	}else if(current_circle_state==L_out){
 		error = R_result;
-	}else if(current_circle_state==R_circle_out){
+	}else if(current_circle_state==R_out){
 		error = L_result;
 	}else{
 		error = M_result;

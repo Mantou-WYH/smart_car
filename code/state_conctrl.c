@@ -135,10 +135,10 @@ void show_state(){
         case L_run:
             ips200_show_string(0, 260, "L_run");
             break;
-		case L_circle_out:
+		case L_out:
             ips200_show_string(0, 260, "L_circle_out");
             break;
-		case R_circle_out:
+		case R_out:
             ips200_show_string(0, 260, "R_circle_out");
             break;
 				
@@ -245,15 +245,15 @@ void update_state() {
 		//ips200_show_int(0,130,calculate_rotation_angle(current_angle,get_yaw()),3);
 		if(calculate_rotation_angle(current_angle,get_yaw())>=345&&calculate_rotation_angle(current_angle,get_yaw())<=346 ){
 			if(current_circle_state== R_run){
-				current_circle_state = R_circle_out;
+				current_circle_state = R_out;
 			}else if(current_circle_state == L_run){
-				current_circle_state = L_circle_out;
+				current_circle_state = L_out;
 			}
 			timer_start(TC_TIME2_CH0);
 		}
 	}
 	
-	if(current_circle_state==L_circle_out||current_circle_state==R_circle_out){
+	if(current_circle_state==L_out||current_circle_state==R_out){
 		//ips200_show_int(0,130,calculate_rotation_angle(current_angle,get_yaw()),3);
 		if(timer_get(TC_TIME2_CH0)>1000){
 			current_circle_state = non_circle;
