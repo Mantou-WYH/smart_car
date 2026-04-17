@@ -1,2 +1,1 @@
-# smart_car
-for Open Source
+具体开源说明可以看word文档或知乎文章：
